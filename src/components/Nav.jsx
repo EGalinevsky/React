@@ -1,27 +1,29 @@
+import  "./Nav.css";
+
 const Nav = () => {
   return (
     <nav className="nav">
-      <ul>
+      <ul className='item'>
         <li>
           <a href="">Profile</a>
         </li>
       </ul>
-      <ul>
+      <ul className='item'>
         <li>
           <a href="">Messages</a>
         </li>
       </ul>
-      <ul>
+      <ul className='item'>
         <li>
           <a href="">Music</a>
         </li>
       </ul>
-      <ul>
+      <ul className='item'>
         <li>
           <a href="">News</a>
         </li>
       </ul>
-      <ul>
+      <ul className='item'>
         <li>
           <a href="">Setting</a>
         </li>

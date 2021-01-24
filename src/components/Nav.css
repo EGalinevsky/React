@@ -1,0 +1,19 @@
+.nav{
+    grid-area: nav;
+    background-color: rgb(99, 99, 99);
+    width: 150px;
+  }
+  
+  .nav ul li {
+    list-style-type: none;
+  }
+  
+  .nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    transition: border .2s linear ;
+  }
+  
+  .nav ul li a:hover{  
+    border-bottom: 1px solid #fff ;
+  }

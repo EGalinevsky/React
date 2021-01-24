@@ -13,49 +13,9 @@
   grid-gap: 10px;
 }
 
-.header{
-  grid-area: head;
-  background-color: rgb(100, 142, 167);
-  border-radius: 10px;
-}
-
-.header img {
-  width: 100px;
-  margin: 15px;
-  color: beige;
-}
-
-.nav{
-  grid-area: nav;
-  background-color: rgb(99, 99, 99);
-  width: 150px;
-}
-
-.nav ul li {
-  list-style-type: none;
-}
 
 
-.nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  transition: border .2s linear ;
-}
 
-.nav ul li a:hover{  
-  border-bottom: 1px solid #fff ;
-}
 
-.content{
-  grid-area: cont;  
-}
 
-.space{
-  width: 900px;
-  height: 500px;
-}
-
-.astronaut{
-  width: 100px;  
-}
 
