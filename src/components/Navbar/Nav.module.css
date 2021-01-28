@@ -10,10 +10,18 @@
   
   .nav ul li a {
     text-decoration: none;
-    color: #fff;
+    /* color: #fff; */
     transition: border .2s linear ;
   }
   
   .nav ul li a:hover{  
     border-bottom: 1px solid #fff ;
   }
+
+.item li a{
+  color: #fff;
+}
+
+.item.active li a{
+  color: rgb(255, 0, 0);
+}
