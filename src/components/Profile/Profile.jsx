@@ -3,7 +3,7 @@ import s from "./Profile.module.css";
 
 const Profile = () => {
   return (
-    <div className={s.content}>
+    <div>
       <img
         className={s.space}
         src="https://avatanplus.com/files/resources/original/5cb1eb4d3d21516a16ff25c2.jpg"

@@ -13,29 +13,29 @@ let classes = `${s.item} ${s.active}`;
 const Nav = () => {
   return (
     <nav className={s.nav}>
-      <ul className={s.item}>
-        <li>
-          <a href="">Profile</a>
-        </li>
-      </ul>
       <ul className={`${s.item} ${s.active}`}>
         <li>
-          <a href="">Messages</a>
+          <a href="/profile">Profile</a>
         </li>
       </ul>
       <ul className={s.item}>
         <li>
-          <a href="">Music</a>
+          <a href="/dialogs">Messages</a>
         </li>
       </ul>
       <ul className={s.item}>
         <li>
-          <a href="">News</a>
+          <a href="/music">Music</a>
         </li>
       </ul>
       <ul className={s.item}>
         <li>
-          <a href="">Setting</a>
+          <a href="/news">News</a>
+        </li>
+      </ul>
+      <ul className={s.item}>
+        <li>
+          <a href="/setting">Setting</a>
         </li>
       </ul>
     </nav>
