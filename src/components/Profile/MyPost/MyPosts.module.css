@@ -1,5 +1,6 @@
 .content{
     grid-area: cont;  
+     padding: 10px;
   }
   
 .space{

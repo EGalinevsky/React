@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import s from "./Nav.module.css";
 
 // let s = {
@@ -13,29 +14,39 @@ let classes = `${s.item} ${s.active}`;
 const Nav = () => {
   return (
     <nav className={s.nav}>
-      <ul className={`${s.item} ${s.active}`}>
+      <ul className={s.item}>
         <li>
-          <a href="/profile">Profile</a>
+          <NavLink to="/profile" activeClassName={s.activeLink}>
+            Profile
+          </NavLink>
         </li>
       </ul>
       <ul className={s.item}>
         <li>
-          <a href="/dialogs">Messages</a>
+          <NavLink to="/dialogs" activeClassName={s.activeLink}>
+            Messages
+          </NavLink>
         </li>
       </ul>
       <ul className={s.item}>
         <li>
-          <a href="/music">Music</a>
+          <NavLink to="/music" activeClassName={s.activeLink}>
+            Music
+          </NavLink>
         </li>
       </ul>
       <ul className={s.item}>
         <li>
-          <a href="/news">News</a>
+          <NavLink to="/news" activeClassName={s.activeLink}>
+            News
+          </NavLink>
         </li>
       </ul>
       <ul className={s.item}>
         <li>
-          <a href="/setting">Setting</a>
+          <NavLink to="/setting" activeClassName={s.activeLink}>
+            Setting
+          </NavLink>
         </li>
       </ul>
     </nav>

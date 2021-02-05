@@ -1,12 +1,27 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
 
-  
-.space{
-    width: 900px;
-    height: 500px;
-  }
-  
-.astronaut{
-    width: 100px;  
-  }
+.dialogs_item {
+  padding: 10px;
+  border-right: 2px solid #000;  
+}
+
+.dialogs_item li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+}
 
 
+.dialogs_item .active{
+  color: #ff0000;
+  text-decoration: none;
+  border-bottom: 2px solid #ff0000 
+}
+
+
+.messages {
+  padding: 10px;
+}
