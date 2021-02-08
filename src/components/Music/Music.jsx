@@ -11,13 +11,4 @@ const Music = (props) => {
     );
 }
 
-
-// function Dialogs (props) {
-//     return(
-//         <div>
-//             fefeefed
-//         </div>
-//     )  
-// }
-
 export default Music;

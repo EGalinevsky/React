@@ -1,17 +1,17 @@
 import { NavLink } from "react-router-dom";
+import Friends from "./Friends/Friends";
 import s from "./Nav.module.css";
 
-// let s = {
-//   'nav': "Nav_nav__1Ub5l",
-//   'item': "Nav_item__3opcv",
-//   'active': "Nav_active__K2oL4",
-// };
 
-console.log(s);
 
-let classes = `${s.item} ${s.active}`;
+// let classes = `${s.item} ${s.active}`;
 
-const Nav = () => {
+const Nav = (props) => {
+
+  let friendsItem = props.friendsData.map((friend) => (
+    <Friends name={friend.name} id={friend.id} />
+  ));
+
   return (
     <nav className={s.nav}>
       <ul className={s.item}>
@@ -47,6 +47,15 @@ const Nav = () => {
           <NavLink to="/setting" activeClassName={s.activeLink}>
             Setting
           </NavLink>
+        </li>
+      </ul>
+      <ul className={s.item}>
+        <li>
+          <NavLink to="/friends" activeClassName={s.activeLink}>
+            Friends
+          </NavLink>
+        </li>
+        <li className={s.img_planets}>            {friendsItem}
         </li>
       </ul>
     </nav>

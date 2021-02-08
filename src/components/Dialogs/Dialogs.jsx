@@ -1,70 +1,44 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
-
-const DialogItem = (props) => {
-  let path = "/dialogs/" + props.id;
-
-  return (
-    <ul className={s.item}>
-      <li>
-        <NavLink activeClassName={s.active} to={path}>
-          {props.name}
-        </NavLink>
-      </li>
-    </ul>
-  );
-};
-
-const Message = (props) => {
-  return <div className="message_item">{props.message}</div>;
-};
+import Message from "./Message/Message";
 
 const Dialogs = (props) => {
-
-  let dialogsData = [
-    { id: 1, name: "Eugene" },
-    { id: 2, name: "Sasha" },
-    { id: 3, name: "Igor" },
-    { id: 4, name: "lex" },
-    { id: 5, name: "Gluk5" },
-  ];
-
-
-  let messageData = [
-    { say: "hi", id: 1 },
-    { say: "how is your name", id: 1 },
-    { say: "what are you doing", id: 1 },
-  ];
-  
-
   /*We are doing here map*/
-  let dialogsElement = dialogsData.map((dialog) => (
+  let dialogsElement = props.dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />
   ));
 
-  let messageElements = messageData.map((messageEl) => (
+  let messageElements = props.messageData.map((messageEl) => (
     <Message message={messageEl.say} id={messageEl.id} />
   ));
 
+  let newMessagePost = React.createRef();
 
+  let addMessagePost = () =>{
+
+    let message = newMessagePost.current.value;
+    alert(message);
+  }
+
+  
   return (
     <div className={s.dialogs}>
       <div className={s.dialogs_item}>
         <h1> Dialogs</h1>
         {dialogsElement}
       </div>
-      <div className={s.messages}>{messageElements}</div>
+      <div className={s.messages}>
+        {messageElements}
+        <div className={s.message__wrapper}>
+          <textarea ref={newMessagePost} className={s.text}></textarea>
+        </div>
+
+        <div className={s.wrapper__btn}>
+          <button onClick={ addMessagePost } className={s.btn}>send</button>
+        </div>
+      </div>
     </div>
   );
 };
-
-// function Dialogs (props) {
-//     return(
-//         <div>
-//             fefeefed
-//         </div>
-//     )
-// }
-
 export default Dialogs;
