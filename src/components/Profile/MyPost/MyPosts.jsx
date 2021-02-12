@@ -3,28 +3,33 @@ import s from "./MyPosts.module.css";
 import Post from "./post/Post";
 
 const MyPosts = (props) => {
-
   let postElement = props.postData.map((postEl) => (
     <Post message={postEl.message} like={postEl.likes} id={postEl.id} />
   ));
 
   let newPostElement = React.createRef();
 
-  let addPost = () =>{    
-    let text = newPostElement.current.value;
+  let addPost = () => {
+    props.dispatch({ type: 'ADD-POST' });
+  };
 
-    props.addPost(text);
-    newPostElement.current.value = '';
-  }
-    
+  let updateNewPostText = () => {
+    let newPostText = newPostElement.current.value;
+    let action = { type: 'UPDATE-NEW-POST-TEXT', newText: newPostText }
+    props.dispatch(action);
+  };
+
   return (
     <div className={s.content}>
       <h3>My Posts</h3>
       <div>
-        <textarea ref={newPostElement}></textarea>
+        <textarea
+          onChange={updateNewPostText}
+          ref={newPostElement}
+          value={props.newPostText}
+        />
         <div>
-          
-          <button onClick={ addPost }>send</button>
+          <button onClick={addPost}>send</button>
         </div>
       </div>
       {postElement}

@@ -1,54 +1,73 @@
-import { rerenderEntireTree } from "../render";
+let store = {
+  _state: {
+    profilePage: {
+      postData: [
+        { message: "hi", id: 1, likes: "15" },
+        { message: "how is your name", id: 1, likes: "15" },
+        { message: "what are you doing", id: 1, likes: "15" },
+      ],
+      newPostText: "",
+    },
 
-let state = {
-  profilePage: {
-    postData: [
-      { message: "hi", id: 1, likes: "15" },
-      { message: "how is your name", id: 1, likes: "15" },
-      { message: "what are you doing", id: 1, likes: "15" }
-    ],
+    dialogsPage: {
+      dialogsData: [
+        { id: 1, name: "Eugene" },
+        { id: 2, name: "Sasha" },
+        { id: 3, name: "Igor" },
+        { id: 4, name: "lex" },
+        { id: 5, name: "Ilya" },
+      ],
+      messageData: [
+        { say: "hi", id: 1 },
+        { say: "how is your name", id: 2 },
+        { say: "what are you doing", id: 3 },
+        { say: "how old are you", id: 3 },
+        { say: "hello, my friend", id: 3 },
+        { say: "Londan is it ", id: 3 },
+      ],
+    },
+
+    friendsPage: {
+      friendsData: [
+        { id: 1, name: "Mars" },
+        { id: 1, name: "Mercury" },
+        { id: 1, name: "Jupiter" },
+      ],
+    },
+  },
+  _callSubscriber() {
+    console.log("dwd");
+  },
+  getState() {
+    return this._state;
+  },
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
 
-  dialogsPage: {
-    dialogsData: [
-      { id: 1, name: "Eugene" },
-      { id: 2, name: "Sasha" },
-      { id: 3, name: "Igor" },
-      { id: 4, name: "lex" },
-      { id: 5, name: "Ilya" }
-    ],
-    messageData: [
-      { say: "hi", id: 1 },
-      { say: "how is your name", id: 2 },
-      { say: "what are you doing", id: 3 },
-      { say: "how old are you", id: 3 },
-      { say: "hello, my friend", id: 3 },
-      { say: "Londan is it ", id: 3 }
-    ],
+  // addPost() {},
+
+  // updateNewPostText(NewText) {},
+
+  dispatch(action) {
+    // {type: 'ADD-POST' AND OTHER  }
+    if (action.type === "ADD-POST") {
+      let newPost = {
+        id: 5,
+        message: this._state.profilePage.newPostText,
+        likes: 0,
+      };
+      this._state.profilePage.postData.push(newPost);
+      this._state.profilePage.newPostText = "";
+      this._callSubscriber(this._state);
+    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+      this._state.profilePage.newPostText = action.newText;
+
+      this._callSubscriber(this._state);
+    }
   },
+};
 
-  friendsPage: {
-    friendsData: [
-      { id: 1, name: "Mars" },
-      { id: 1, name: "Mercury" },
-      { id: 1, name: "Jupiter" }
-    ],
-  },
-}; 
-export let addPost = (postMessage) =>{
- 
-  let newPost = {
-    id: 5,
-    message: postMessage,
-    likes: 0
-  };
-  state.profilePage.postData.push(newPost);
+export default store;
 
-  rerenderEntireTree(state);
-}
-
-
-
-
-export default state;
-
+window.store = store;

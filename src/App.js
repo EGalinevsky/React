@@ -11,19 +11,20 @@ import News from "./components/News/News";
 import Setting from "./components/Setting/Setting";
 import Friends from "./components/Friends/Friends";
 
-
 const App = (props) => {
   return (
     <BrowserRouter>
       <div className="app__wrapper">
         <Header />
-        <Nav friendsData={props.state.friendsPage.friendsData}/>
+        <Nav friendsData={props.state.friendsPage.friendsData} />
         <div className="app__wrapper-content">
           <Route
             path="/profile"
             render={() => (
-              <Profile postData={props.state.profilePage.postData}  
-              addPost={props.addPost}/>
+              <Profile
+                profilePage={props.state.profilePage}
+                dispatch={props.dispatch}
+              />
             )}
           />
 
@@ -40,7 +41,6 @@ const App = (props) => {
           <Route path="/news" render={() => <News />} />
           <Route path="/setting" render={() => <Setting />} />
           <Route path="/friends" render={() => <Friends />} />
-          
         </div>
       </div>
     </BrowserRouter>
