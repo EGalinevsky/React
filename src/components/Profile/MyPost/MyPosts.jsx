@@ -20,6 +20,7 @@ const MyPosts = (props) => {
   };
 
   return (
+    
     <div className={s.content}>
       <h3>My Posts</h3>
       <div>
