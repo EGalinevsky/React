@@ -2,10 +2,10 @@ import React from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
 import Message from "./Message/Message";
-import { addMessageActionCreator, updateMessageActionCreator} from "../../redux/state"
+import { addMessageActionCreator, updateMessageActionCreator} from "../../redux/dialogsReducer"
 
 const Dialogs = (props) => {
-  /*We are doing here map*/
+    /*We are doing here map*/
   let dialogsElement = props.dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />
   ));
@@ -21,8 +21,8 @@ const Dialogs = (props) => {
   }
 
   let updateNewMessageText = ()=>{
-    let messageSend = newMessagePost.current.value;
-    let action = updateMessageActionCreator(messageSend)
+    let nextMessageSend = newMessagePost.current.value;
+    let action = updateMessageActionCreator(nextMessageSend)
     props.dispatch(action);
   }
 
@@ -41,7 +41,8 @@ const Dialogs = (props) => {
           <textarea ref={newMessagePost}
                     className={s.text}
                     onChange={updateNewMessageText}
-                    value={props.messageSend}
+                    value={props.nextMessageSend}
+                    placeholder='send message'
            ></textarea>           
         </div>        
         <div className={s.wrapper__btn}>

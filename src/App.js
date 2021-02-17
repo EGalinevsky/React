@@ -11,6 +11,7 @@ import Setting from "./components/Setting/Setting";
 import Friends from "./components/Friends/Friends";
 
 const App = (props) => {
+ 
   return (
     <BrowserRouter>
       <div className="app__wrapper">
@@ -28,12 +29,14 @@ const App = (props) => {
           />
 
           <Route
+          
             path="/dialogs"
             render={() => (
+              
               <Dialogs
                 dialogsData={props.state.dialogsPage.dialogsData}
                 messageData={props.state.dialogsPage.messageData}
-                messageSend={props.state.dialogsPage.messageSend}
+                nextMessageSend={props.state.dialogsPage.nextMessageSend}
                 dispatch={props.dispatch}
               />
             )}
