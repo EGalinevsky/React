@@ -33,6 +33,8 @@ const App = (props) => {
               <Dialogs
                 dialogsData={props.state.dialogsPage.dialogsData}
                 messageData={props.state.dialogsPage.messageData}
+                messageSend={props.state.dialogsPage.messageSend}
+                dispatch={props.dispatch}
               />
             )}
           />

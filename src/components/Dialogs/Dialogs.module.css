@@ -46,6 +46,11 @@
   border-radius: 20px;
 }
 
+
+.messages_item{
+  min-height: 80%;
+}
+
 .message__wrapper {
   border-top: 1px solid #000;
   text-align: center;
@@ -53,6 +58,7 @@
   display: flex;
   justify-content: center;
 }
+
 .text {
   margin-top: 20px;
   width: 70%;
