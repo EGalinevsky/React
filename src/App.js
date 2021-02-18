@@ -11,7 +11,7 @@ import Setting from "./components/Setting/Setting";
 import Friends from "./components/Friends/Friends";
 
 const App = (props) => {
- 
+ debugger;
   return (
     <BrowserRouter>
       <div className="app__wrapper">

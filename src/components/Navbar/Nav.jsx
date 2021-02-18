@@ -7,7 +7,7 @@ import s from "./Nav.module.css";
 // let classes = `${s.item} ${s.active}`;
 
 const Nav = (props) => {
-
+  debugger;
   let friendsItem = props.friendsData.map((friend) => (
     <Friends name={friend.name} id={friend.id} />
   ));
