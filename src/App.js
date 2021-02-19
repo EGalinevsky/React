@@ -3,7 +3,7 @@ import "./App.css";
 import Profile from "./components/Profile/Profile";
 import Header from "./components/Header/Header";
 import Nav from "./components/Navbar/Nav";
-import Dialogs from "./components/Dialogs/Dialogs";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import { BrowserRouter, Route } from "react-router-dom";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -11,7 +11,7 @@ import Setting from "./components/Setting/Setting";
 import Friends from "./components/Friends/Friends";
 
 const App = (props) => {
- debugger;
+  
   return (
     <BrowserRouter>
       <div className="app__wrapper">
@@ -22,9 +22,7 @@ const App = (props) => {
             path="/profile"
             render={() => (
               <Profile
-                profilePage={props.state.profilePage}
-                dispatch={props.dispatch}
-              />
+                store={props.store}/>
             )}
           />
 
@@ -33,11 +31,8 @@ const App = (props) => {
             path="/dialogs"
             render={() => (
               
-              <Dialogs
-                dialogsData={props.state.dialogsPage.dialogsData}
-                messageData={props.state.dialogsPage.messageData}
-                nextMessageSend={props.state.dialogsPage.nextMessageSend}
-                dispatch={props.dispatch}
+              <DialogsContainer
+                store={props.store}    
               />
             )}
           />

@@ -5,25 +5,29 @@ import Message from "./Message/Message";
 import { addMessageActionCreator, updateMessageActionCreator} from "../../redux/dialogsReducer"
 
 const Dialogs = (props) => {
+
+  let state = props.dialogsPage
+
     /*We are doing here map*/
-  let dialogsElement = props.dialogsData.map((dialog) => (
+  let dialogsElement = state.dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />
   ));
 
-  let messageElements = props.messageData.map((messageEl) => (
+  let messageInTextaria = state.messageInTextaria
+
+  let messageElements = state.messageData.map((messageEl) => (
     <Message message={messageEl.say} id={messageEl.id} />
   ));
 
-  let newMessagePost = React.createRef();
 
-  let addMessagePost = () =>{    
-    props.dispatch(addMessageActionCreator());
-  }
 
-  let updateNewMessageText = ()=>{
-    let nextMessageSend = newMessagePost.current.value;
-    let action = updateMessageActionCreator(nextMessageSend)
-    props.dispatch(action);
+  let onAddMessagePost = () =>{    
+    props.sendMessage();
+  } 
+
+  let onUpdateNewMessageText = (e)=>{
+    let nextMessageSend = e.target.value;
+     props.updateNewMessageSend(nextMessageSend)
   }
 
   
@@ -38,15 +42,15 @@ const Dialogs = (props) => {
           {messageElements}
           </div>   
         <div className={s.message__wrapper}>
-          <textarea ref={newMessagePost}
+          <textarea 
                     className={s.text}
-                    onChange={updateNewMessageText}
-                    value={props.nextMessageSend}
+                    onChange={onUpdateNewMessageText}
+                    value={messageInTextaria}
                     placeholder='send message'
            ></textarea>           
         </div>        
         <div className={s.wrapper__btn}>
-          <button onClick={ addMessagePost } className={s.btn}>send</button>
+          <button onClick={ onAddMessagePost } className={s.btn}>send</button>
         </div>
       </div>
     </div>
