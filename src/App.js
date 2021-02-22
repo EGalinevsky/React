@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Profile from "./components/Profile/Profile";
 import Header from "./components/Header/Header";
-import Nav from "./components/Navbar/Nav";
+import NavContainer from "./components/Navbar/NavContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import { BrowserRouter, Route } from "react-router-dom";
 import Music from "./components/Music/Music";
@@ -11,29 +11,22 @@ import Setting from "./components/Setting/Setting";
 import Friends from "./components/Friends/Friends";
 
 const App = (props) => {
-  
+
   return (
     <BrowserRouter>
       <div className="app__wrapper">
         <Header />
-        <Nav friendsData={props.state.friendsPage.friendsData} />
+        <NavContainer />
         <div className="app__wrapper-content">
           <Route
             path="/profile"
             render={() => (
-              <Profile
-                store={props.store}/>
+              <Profile />
             )}
           />
-
           <Route
-          
             path="/dialogs"
-            render={() => (
-              
-              <DialogsContainer
-                store={props.store}    
-              />
+            render={() => (                 <DialogsContainer />
             )}
           />
           <Route path="/music" render={() => <Music />} />

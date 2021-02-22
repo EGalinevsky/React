@@ -12,8 +12,7 @@ const Dialogs = (props) => {
   let dialogsElement = state.dialogsData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />
   ));
-
-  let messageInTextaria = state.messageInTextaria
+  
 
   let messageElements = state.messageData.map((messageEl) => (
     <Message message={messageEl.say} id={messageEl.id} />
@@ -45,7 +44,7 @@ const Dialogs = (props) => {
           <textarea 
                     className={s.text}
                     onChange={onUpdateNewMessageText}
-                    value={messageInTextaria}
+                    value={props.nextMessageSend}
                     placeholder='send message'
            ></textarea>           
         </div>        
