@@ -8,7 +8,7 @@ import s from "./Nav.module.css";
 
 const Nav = (props) => {
   let friendsItem = props.friendsData.map((friend) => (
-    <Friends name={friend.name} id={friend.id} />
+    <Friends name={friend.name} key={friend.id} id={friend.id} />
   ));
 
   return (
@@ -50,7 +50,7 @@ const Nav = (props) => {
       </ul>
       <ul className={s.item}>
         <li>
-          <NavLink to="/friends" activeClassName={s.activeLink}>
+          <NavLink to="/users" activeClassName={s.activeLink}>
             Friends
           </NavLink>
         </li>

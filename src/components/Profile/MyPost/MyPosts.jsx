@@ -8,7 +8,7 @@ import Post from "./post/Post";
 const MyPosts = (props) => {
   
   let postElement = props.postData.map((postEl) => (
-    <Post message={postEl.message} like={postEl.likes} id={postEl.id} />
+    <Post message={postEl.message} key={postEl.id} like={postEl.likes} id={postEl.id} />
   ));
 
   let newPostElement = React.createRef();
@@ -30,6 +30,7 @@ const MyPosts = (props) => {
       <h3>My Posts</h3>
       <div>
         <textarea
+          placeholder='send message'
           onChange={onUpdateNewPostText}
           ref={newPostElement}
           value={props.newPostText}

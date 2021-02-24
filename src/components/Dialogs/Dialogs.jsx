@@ -10,15 +10,15 @@ const Dialogs = (props) => {
 
     /*We are doing here map*/
   let dialogsElement = state.dialogsData.map((dialog) => (
-    <DialogItem name={dialog.name} id={dialog.id} />
+    <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />
   ));
   
 
   let messageElements = state.messageData.map((messageEl) => (
-    <Message message={messageEl.say} id={messageEl.id} />
+    <Message message={messageEl.say} key={messageEl.id} id={messageEl.id} />
   ));
 
-
+    let nextMessageAdd = state.nextMessageSend;
 
   let onAddMessagePost = () =>{    
     props.sendMessage();
@@ -44,7 +44,7 @@ const Dialogs = (props) => {
           <textarea 
                     className={s.text}
                     onChange={onUpdateNewMessageText}
-                    value={props.nextMessageSend}
+                    value={nextMessageAdd}
                     placeholder='send message'
            ></textarea>           
         </div>        

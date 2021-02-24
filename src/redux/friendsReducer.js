@@ -2,8 +2,8 @@
 let initialState ={
     friendsData: [
         { id: 1, name: "Mars" },
-        { id: 1, name: "Mercury" },
-        { id: 1, name: "Jupiter" },
+        { id: 2, name: "Mercury" },
+        { id: 3, name: "Jupiter" },
       ],
 }
 
