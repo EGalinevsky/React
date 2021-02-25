@@ -37,6 +37,7 @@
 }
 
 .right__item{
+    margin-left: 10px;
     width: 100%;
     border: 1px solid #000;   
     border-radius: 20px; 
