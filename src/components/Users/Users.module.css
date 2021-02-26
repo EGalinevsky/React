@@ -11,6 +11,31 @@
     text-align: center;
 }
 
+.selectedPage{
+    border: 1px solid #000;
+    border-radius: 50%;
+    color: #000;
+    background: #fff;
+    padding: 2px 5px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background .2s linear;
+}
+.selectedPageActive{
+    border: 1px solid #000;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    background: rgb(0, 0, 0);
+    padding: 2px 5px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background .2s linear;
+}
+.selectedPage:hover{
+    color: #fff;
+    background: #000;
+}
+
 .photo{
     width: 100px;
     border-radius: 50px;
