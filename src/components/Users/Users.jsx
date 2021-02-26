@@ -1,27 +1,29 @@
 import React from 'react'
-import s from "./Users.module.css";
-import * as axios from "axios";
+import s from "./Users.module.css"
 import user_png from "../../assets/img/user.jpg"
 
 const Users = (props) =>{
+    debugger;
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-    let showUsers = () =>{
-        if (props.users.length === 0){
-
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-                debugger;
-                props.setUsers(response.data.items);
-            });             
+        let pages = [];
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i);            
         }
-    }
-    
-    
+   
     return(
         <div>
             <h1>Users</h1>
-            <button onClick={showUsers}>Show users</button>
+            <div >  
+            {pages.map(p=>{
+                   return <button 
+                   className={props.currentPage === p ? s.selectedPageActive : s.selectedPage} 
+                   onClick={(e) => {props.onPageChanged(p);}}
+                    >{p}</button>
+                })}              
+            </div>
             {
-                props.users.map((u) => <div key={u.id}>
+               props.users.map((u) => <div key={u.id}>
                     
             <div className={s.wrapper}>
 
