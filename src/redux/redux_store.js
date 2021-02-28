@@ -8,13 +8,13 @@ let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     friendsPage: friendsReducer,
-    usersPage: usersRedecer,
+    usersPage: usersRedecer
 });
 
 
 let store = createStore(reducers); 
 
-
+window.store = store;
 
 
 export default store;

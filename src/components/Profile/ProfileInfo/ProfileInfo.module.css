@@ -12,3 +12,19 @@
     margin-top: 5px;  
     border: 2px solid #000;
   }
+
+.user_item{
+  display: flex;
+}
+
+.user_item div{
+  margin-left: 20px
+}
+
+.social{
+  display: table;
+}
+
+.social p img{
+  width: 40px;
+}

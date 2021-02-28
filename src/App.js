@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Profile from "./components/Profile/Profile";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 import Header from "./components/Header/Header";
 import NavContainer from "./components/Navbar/NavContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -19,9 +19,9 @@ const App = (props) => {
         <NavContainer />
         <div className="app__wrapper-content">
           <Route
-            path="/profile"
+            path="/profile/:userId?"
             render={() => (
-              <Profile />
+              <ProfileContainer />
             )}
           />
           <Route
