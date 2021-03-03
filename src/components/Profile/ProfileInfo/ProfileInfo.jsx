@@ -6,7 +6,6 @@ import vk from "./../../../assets/img/vk.png";
 import twitter from "./../../../assets/img/twitter.png";
 
 const ProfileInfo = (props) => {
-  debugger;
   if (!props.profile){
     return <Preloader />
   }
