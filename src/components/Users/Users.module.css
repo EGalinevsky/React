@@ -41,7 +41,7 @@
     border-radius: 50px;
 }
 
-.btn{
+/* .btn{
     background: none;
     color: red;
     font-family: Arial, Helvetica, sans-serif;
@@ -54,11 +54,19 @@
     transition: background .2s linear;
 }
 
+
+
 .btn:hover{
     cursor: pointer;
     background: red;
     color: #fff;
     border: 1px solid red;
+} */
+
+button :disabled{
+    border:  1px solid #000;
+    background: #000;
+    background-color: #000;
 }
 
 .right__item{

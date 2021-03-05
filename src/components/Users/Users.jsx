@@ -7,7 +7,7 @@ import {usersAPI} from "./../../api/api"
 
 const Users = (props) =>{
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
+ 
         let pages = [];
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i);            
@@ -35,17 +35,26 @@ const Users = (props) =>{
                     </NavLink>
                     <div>
                         {u.followed ? 
-                        <button onClick={ () => {usersAPI.unfollowUsers(u.id).then(response => {
+                        <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={ () => {
+                            props.toggleFollowingProgress(true, u.id);
+                            
+                            usersAPI.unfollowUsers(u.id).then(response => {
                             if (response.data.resultCode === 0){                                
                                 props.unfollow(u.id);
                             }
+                            props.toggleFollowingProgress(false, u.id);
                             })  
 
                         }}  className={s.btn}>unfollow</button> : 
-                        <button onClick={ () => {usersAPI.followUsers(u.id).then(response => {
+                        <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={ () => {
+                            
+                            props.toggleFollowingProgress(true, u.id);
+
+                            usersAPI.followUsers(u.id).then(response => {
                             if (response.data.resultCode === 0){
                                 props.follow(u.id);
                             }
+                            props.toggleFollowingProgress(false, u.id);
                             })    
                             }} className={s.btn}>follow</button>}
                         
