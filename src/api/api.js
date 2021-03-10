@@ -23,17 +23,21 @@ export const usersAPI = {
     },
     followUsers(idUser) {
         return (
-            instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${idUser}`)
+            instance.post(`follow/${idUser}`)
+        )
+    },   
+    getProfile (userId){
+        return (
+            instance.get(`profile/` + userId)
         )
     }
 }
 
-
-
-
-
-// export const unfollow = (id) => {
-//     instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
-// }
-
+export const authAPI ={
+    me  () {
+        return(
+            instance.get(`auth/me`)
+        )
+    }
+}
 

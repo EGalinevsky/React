@@ -5,6 +5,9 @@ import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "./../common/preloader/preloader";
 import {usersAPI} from './../../api/api'
+import { Redirect } from 'react-router';
+import {withAuthRedirect} from './../../hoc/withAuthRedirect'
+import { compose } from 'redux';
 
 class UsersContainer extends React.Component {    
     
@@ -12,12 +15,13 @@ class UsersContainer extends React.Component {
      this.props.getUsers(this.props.setCurrentPage, this.props.pageSize);
     }
     onPageChanged = (pageNumber) =>{
-
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.getUsers(pageNumber, this.props.pageSize);        
+        this.props.setCurrentPage(pageNumber);
     }
     
     
     render(){
+        
        return <div>
            {this.props.isFetching ? <Preloader /> : null}
        <Users 
@@ -29,7 +33,6 @@ class UsersContainer extends React.Component {
        users={this.props.users}
        follow={this.props.follow}
        unfollow={this.props.unfollow}
-       toggleFollowingProgress={this.props.toggleFollowingProgress}
        followingInProgress={this.props.followingInProgress}
        /> 
        </div>
@@ -44,7 +47,8 @@ const mapStateToProps =(state)=>{
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,followingInProgress: state.usersPage.followingInProgress
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress, 
     }
 }
 
@@ -72,12 +76,18 @@ const mapStateToProps =(state)=>{
 // }
 
 
-export default connect(mapStateToProps,
-    { 
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsers
-    })
-    (UsersContainer);
+
+
+
+
+export default compose (
+    withAuthRedirect,
+    connect(mapStateToProps,
+        { 
+        follow,
+        unfollow,
+        setCurrentPage,
+        toggleFollowingProgress,
+        getUsers
+        })
+)(UsersContainer)
