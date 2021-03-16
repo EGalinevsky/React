@@ -1,0 +1,7 @@
+
+
+.form_control.error input,
+.form_control.error textarea
+{
+    border: 3px solid red;
+}

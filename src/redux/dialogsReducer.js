@@ -1,4 +1,4 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 const ADD_MESSAGE = 'ADD-MESSAGE';
 
 let initialState = {
@@ -14,44 +14,34 @@ let initialState = {
     { say: "how is your name", id: 2 },
     { say: "what are you doing", id: 3 },
     { say: "how old are you", id: 4 },
-  ],
-  nextMessageSend:' '
+  ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
 
   let stateCopy;
-    switch (action.type) {
-        case ADD_MESSAGE:
-            let newMessage ={
-              id: 5,
-              say: state.nextMessageSend};
-            return {
-              ...state,
-              messageData: [...state.messageData, newMessage],
-              nextMessageSend: ""
-            }
-        case UPDATE_NEW_MESSAGE_TEXT:
-          return {
-            ...state,
-            nextMessageSend: action.newMessageText
-          };            
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case ADD_MESSAGE:
+      let newMessage = {
+        id: 5,
+        say: action.nextMessageBody
+      };
+      return {
+        ...state,
+        messageData: [...state.messageData, newMessage],
+      }
+
+    default:
+      return state;
+  }
 };
 
-export const addMessageActionCreator = () =>{
-    return {
-      type: ADD_MESSAGE
-    }  
+export const addMessageActionCreator = (nextMessageBody) => {
+  return {
+    type: ADD_MESSAGE,
+    nextMessageBody: nextMessageBody
   }
-  export const updateMessageActionCreator = (nexMessageSend) =>{
-    return {
-      type: UPDATE_NEW_MESSAGE_TEXT,
-      newMessageText: nexMessageSend
-    }  
-  }
+}
 
 
 export default dialogsReducer;
