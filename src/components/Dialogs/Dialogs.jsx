@@ -2,15 +2,14 @@ import React from "react";
 import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css";
 import Message from "./Message/Message";
-import {
-  addMessageActionCreator,
-  updateMessageActionCreator,
-} from "../../redux/dialogsReducer";
 import { Redirect } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
+import {required,maxLengthCreator} from "./../../utils/validators/validators"
+import {Textarea} from "./../../components/common/FormsControls/FormsControls";
 
 const Dialogs = (props) => {
   let state = props.dialogsPage;
+  
 
   /*We are doing here map*/
   let dialogsElement = state.dialogsData.map((dialog) => (
@@ -40,13 +39,15 @@ const Dialogs = (props) => {
     </div>
   );
 };
+const maxLength = maxLengthCreator(50)
 
 const AddMessageForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div className={s.message__wrapper}>
         <Field
-          component="textarea"
+          validate={[required, maxLength]}
+          component={Textarea}
           name="nextMessageBody"
           placeholder="send message"
           className={s.text}
