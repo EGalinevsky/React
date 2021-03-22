@@ -11,28 +11,31 @@ import Setting from "./components/Setting/Setting";
 import UsersContainer from "./components/Users/UsersContainer";
 import Login from "./components/login/Login";
 import { connect } from 'react-redux';
-import {initializeApp} from "./redux/app-reducer";
+import { initializeApp } from "./redux/app-reducer";
 import Preloader from "./components/common/preloader/preloader";
 
 
 class App extends Component {
-  componentDidMount(){
+  componentDidMount() {
     this.props.initializeApp();
   }
 
   render() {
+    debugger;
 
 
-    if (!this.props.initialized){
-    return <Preloader/>
-}
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
     return (
+
       <BrowserRouter>
         <div className="app__wrapper">
           <HeaderContainer />
           <NavContainer />
           <div className="app__wrapper-content">
             <Route
+
               path="/profile/:userId?"
               render={() => (
                 <ProfileContainer />
@@ -59,4 +62,4 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, {initializeApp})(App) ;
+export default connect(mapStateToProps, { initializeApp })(App);
