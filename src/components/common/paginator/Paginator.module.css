@@ -1,0 +1,24 @@
+.paginator{
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.paginator button{
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 10px;
+  outline: none;
+}
+
+.portionNumber {
+  padding: 2px;
+  border: 1px solid grey;
+}
+
+.portionNumber.selectedPage{
+  font-weight: bold;
+  border-color: black;
+}
+
