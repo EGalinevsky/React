@@ -5,8 +5,10 @@ import facebook from "./../../../assets/img/facebook.png";
 import vk from "./../../../assets/img/vk.png";
 import twitter from "./../../../assets/img/twitter.png";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import user_png from "../../../assets/img/user.jpg";
 
 const ProfileInfo = (props) => {
+  debugger;
   if (!props.profile) {
     return <Preloader />;
   }
@@ -19,6 +21,12 @@ const ProfileInfo = (props) => {
     }
   };
 
+  const onMainPhotoSelected = (e) =>{
+    if (e.target.files.length) {
+      props.savePhoto(e.target.files[0])
+    }
+  }
+
   return (
     <div>
       {/* <img
@@ -29,7 +37,7 @@ const ProfileInfo = (props) => {
         <div className={s.user_item}>
           <img
             className={s.description_block}
-            src={props.profile.photos.large}
+            src={props.profile.photos.large || user_png}
           ></img>
 
           <div className={s.user_about}>
@@ -44,6 +52,7 @@ const ProfileInfo = (props) => {
         </div>
 
         <div>
+          {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
           <h3>Social</h3>
           <div className={s.social}>
             <p>
