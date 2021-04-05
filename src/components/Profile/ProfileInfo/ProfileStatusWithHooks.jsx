@@ -45,11 +45,10 @@ let arr = [0, () => {}];
 let [a, setA] = arr;
 
 const ProfileStatusWithHooks = (props) => {
-
   let [editMode, setEditMode] = useState(false);
   let [status, setStatus] = useState(props.status);
 
-  useEffect ( () =>{
+  useEffect(() => {
     setStatus(props.status);
   }, [props.status]);
 
@@ -70,9 +69,12 @@ const ProfileStatusWithHooks = (props) => {
     <div>
       {!editMode && (
         <div>
-          <span onDoubleClick={activeteEditMode}>
-            {props.status || "----"}
-          </span>
+          <p>            
+            <strong>&nbsp;Status:</strong>&nbsp;
+            <span onDoubleClick={activeteEditMode}>
+              {props.status || "----"}
+            </span>
+          </p>
         </div>
       )}
       {editMode && (
