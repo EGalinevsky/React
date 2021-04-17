@@ -1,0 +1,15 @@
+.content{
+    grid-area: cont;  
+     padding: 10px;
+  }
+  
+.space{
+    width: 900px;
+    height: 500px;
+  }
+  
+.astronaut{
+    width: 100px;  
+  }
+
+

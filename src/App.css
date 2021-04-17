@@ -1,0 +1,27 @@
+.app__wrapper{
+  display: grid;
+  margin: 0 auto;
+  width: 1000px;
+  
+
+  grid-template-areas: 
+  "head head"
+  "nav cont";
+
+        
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+}
+
+.app__wrapper-content {
+    grid-area: cont;
+    
+}
+
+
+
+
+
+
+

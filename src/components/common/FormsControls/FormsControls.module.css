@@ -1,0 +1,17 @@
+
+
+.form_control.error input,
+.form_control.error textarea
+{
+    border: 3px solid red;
+}
+
+.error{
+    color: crimson;
+}
+
+.form_summary_error{
+    padding: 5px;
+    color: rgb(255, 0, 0);
+    border: 1px solid red;
+}

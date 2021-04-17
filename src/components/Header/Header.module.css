@@ -1,0 +1,19 @@
+.header{
+    grid-area: head;
+    background-color: rgb(100, 142, 167);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .header_img {
+    width: 100px;
+    margin: 15px;
+    color: beige;
+  }
+
+  .login__block a{
+    color: #fff;
+    text-decoration: none;
+    margin:40px;
+  }
