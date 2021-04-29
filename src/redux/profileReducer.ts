@@ -1,4 +1,4 @@
-import {usersAPI, profileAPI} from "./../api/api";
+import {usersAPI, profileAPI} from "../api/api";
 import { stopSubmit } from "redux-form";
 
 const ADD_POST = 'ADD-POST';
@@ -7,17 +7,51 @@ const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
 const SAVE_PHOTO_SUCCESS ='SAVE_PHOTO_SUCCESS'
 
-let initialState = {
-  postData: [
-    { message: "hi", id: 1, likes: "15" },
-    { message: "how is your name", id: 2, likes: "15" },
-    { message: "what are you doing", id: 3, likes: "15" },
-  ],
-  profile: null,
-  status: "",
+type PostType ={
+  id:number,
+  message: string,
+  likes: number
 }
 
-const profileReducer = (state = initialState, action) => {
+type ContactsType = {
+  github: string,
+vk: string,
+facebook: string,
+instagram: string,
+twitter: string,
+website: string,
+youtube: string,
+mainLink: string
+}
+
+type PhotosType ={
+  small: string | null
+  large: string | null
+}
+
+type ProfileType ={
+  userId:number,
+  lookingForAJob: boolean,
+  lookingForAJobDescription: string,
+  fullName:string,
+  contacts: ContactsType,
+  photos:PhotosType
+}
+
+let initialState = {
+  postData: [
+    { message: "hi", id: 1, likes: 15 },
+    { message: "how is your name", id: 2, likes: 15 },
+    { message: "what are you doing", id: 3, likes: 15 },
+  ] as Array<PostType> ,
+  profile: null as ProfileType | null,
+  status: "",
+  nextPostBody: ''
+}
+
+export type initialStateType = typeof initialState
+
+const profileReducer = (state = initialState, action:any):initialStateType => {
 
   switch (action.type) {
     case ADD_POST:
