@@ -1,18 +1,33 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import {follow, unfollow, setCurrentPage,toggleFollowingProgress, requestUsers} from './../../redux/usersRedecer';
+import {follow, unfollow, setCurrentPage,toggleFollowingProgress, requestUsers} from '../../redux/usersRedecer';
 import Users from "./Users";
-import Preloader from "./../common/preloader/preloader";
-import {withAuthRedirect} from './../../hoc/withAuthRedirect'
+import Preloader from "../common/preloader/preloader";
+import {withAuthRedirect} from '../../hoc/withAuthRedirect'
 import { compose } from 'redux';
-import {getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress} from "./../../redux/users-selectors";
+import {getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress} from "../../redux/users-selectors";
+import { UserType } from '../../types/types';
+import {AppStateType} from '../../redux/redux_store'
 
-class UsersContainer extends React.Component {    
+type PropsType ={
+    setCurrentPage: any,
+    pageSize:number,
+    requestUsers:any,
+    isFetching: boolean,
+    currentPage:number
+    totalUsersCount:number,
+    users:Array <UserType>,
+    follow: () => void,
+    unfollow: () => void,
+    followingInProgress: Array<number>
+}
+
+class UsersContainer extends React.Component<PropsType> {    
     
     componentDidMount(){
      this.props.requestUsers(this.props.setCurrentPage, this.props.pageSize);
     }
-    onPageChanged = (pageNumber) =>{
+    onPageChanged = (pageNumber:number) =>{
         this.props.requestUsers(pageNumber, this.props.pageSize);        
         this.props.setCurrentPage(pageNumber);
     }
@@ -49,7 +64,7 @@ class UsersContainer extends React.Component {
 //         followingInProgress: state.usersPage.followingInProgress, 
 //     }
 // }
-const mapStateToProps =(state)=>{
+const mapStateToProps =(state: AppStateType)=>{
     return{
         users: getUsers(state),
         pageSize: getPageSize(state),
