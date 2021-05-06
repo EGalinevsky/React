@@ -61,7 +61,7 @@ class App extends Component {
             <Route path="/music" render={() => <Music />} />
             <Route path="/news" render={() => <News />} />
             <Route path="/setting" render={() => <Setting />} />
-            <Route path="/users" render={() => <UsersContainer />} />
+            <Route path="/users" render={() => <UsersContainer pageTitle={'Самураи'} />} />
             <Route path="/login" render={() => <Login />} />
           </div>
         </div>
