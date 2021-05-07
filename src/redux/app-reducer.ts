@@ -38,7 +38,7 @@ export const initializedSuccess = ():initializedSuccessActionType => {
     }
 }
 
-export const initializeApp = ()=> (dispatch:any) => {
+export const initializeApp = () => (dispatch:any) => {
     let promise = dispatch(getAuthUserData());
     Promise.all([promise])
         .then(() => {
