@@ -15,27 +15,23 @@ type MapStatePropsType = {
     currentPage: number
     totalUsersCount: number,
     users: Array<UserType>,
-}
-
-type MapDispatchPropsType = {
     followingInProgress: Array<number>
-    follow: () => void,
-    unfollow: () => void,
 }
 
-type PropsType = {
-    pageTitle: string,
+type MapDispatchPropsType = {    
+    follow: (serId:number) => void,
+    unfollow: (serId:number) => void,
+    requestUsers: any,    
+    toggleFollowingProgress: any,
     setCurrentPage: any,
-    pageSize: number,
-    requestUsers: any,
-    isFetching: boolean,
-    currentPage: number
-    totalUsersCount: number,
-    users: Array<UserType>,
-    follow: () => void,
-    unfollow: () => void,
-    followingInProgress: Array<number>
 }
+
+type OwnPropsType = {
+    pageTitle: string,
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
 
 class UsersContainer extends React.Component<PropsType> {
 
@@ -80,7 +76,7 @@ class UsersContainer extends React.Component<PropsType> {
 //         followingInProgress: state.usersPage.followingInProgress, 
 //     }
 // }
-const mapStateToProps = (state: AppStateType) => {
+const mapStateToProps = (state: AppStateType):MapStatePropsType => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -127,7 +123,7 @@ const mapStateToProps = (state: AppStateType) => {
 
 export default compose(
     withAuthRedirect,
-    connect(mapStateToProps,
+    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps,
         {
             follow,
             unfollow,

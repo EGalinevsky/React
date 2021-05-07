@@ -6,7 +6,7 @@ import Paginator from "../common/paginator/Paginator";
 import User from "./User";
 
 const Users = (props) => {
-  debugger
+  
   return (
     <div>
       <Paginator
