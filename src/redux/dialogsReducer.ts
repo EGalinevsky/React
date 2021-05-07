@@ -29,7 +29,7 @@ let initialState = {
 
 export type initialStateType = typeof initialState
 
-const dialogsReducer = (state = initialState, action:any):initialStateType => {
+const dialogsReducer = (state = initialState, action:addMessageActionCreatorType):initialStateType => {
 
   let stateCopy;
   switch (action.type) {
