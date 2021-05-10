@@ -1,4 +1,4 @@
-import { authAPI } from "../api/api";
+import { authAPI, ResultCodeEnum } from "../api/api";
 import { stopSubmit } from "redux-form";
 import { Dispatch } from "react";
 import { AppStateType } from "./redux_store";
@@ -58,21 +58,21 @@ type GetStateType= ()=> AppStateType
 type GetThunckType =ThunkAction<Promise<void>, AppStateType, unknown, setAuthUserDataActionType>
 
 export const getAuthUserData = () => async (dispatch:GetDispatchType , getState:GetStateType) => {
-    let response = await authAPI.me()
-        if (response.data.resultCode === 0) {
+    let meData = await authAPI.me()
+        if (meData.resultCode === ResultCodeEnum.Success) {
 
-            let { id, email, login } = response.data.data;
+            let { id, email, login } = meData.data;
             dispatch(setAuthUserData(id, email, login, true));
         }
     };
 
 export const login = (email:string, password:string, rememberMe:boolean):GetThunckType => async (dispatch:any) => {
-    let response = await authAPI.login(email, password, rememberMe)
+    let logData = await authAPI.login(email, password, rememberMe)
     
-        if (response.data.resultCode === 0) {
+        if (logData.resultCode === ResultCodeEnum.Success) {
             dispatch(getAuthUserData())
         } else {
-            let message = response.data.messages.length > 0 ?  response.data.messages[0] : "some error"
+            let message = logData.messages.length > 0 ?  logData.messages[0] : "some error"
             dispatch(stopSubmit("login", { _error:message}));
         }
     };

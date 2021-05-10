@@ -1,5 +1,5 @@
-import * as axios from "axios";
-
+import axios from "axios";
+import {ProfileType} from '../types/types'
 
 const instance = axios.create({
     withCredentials: true,
@@ -10,23 +10,23 @@ const instance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers(currentPage, pageSize) {
+    getUsers(currentPage:number, pageSize:number) {
         return (
             instance.get(`users?page=${currentPage}&count=${pageSize}`)
                 .then(response => response.data)
         )
     },
-    unfollowUsers(idUser) {
+    unfollowUsers(idUser:number) {
         return (
             instance.delete(`follow/${idUser}`)
         )
     },
-    followUsers(idUser) {
+    followUsers(idUser:number) {
         return (
             instance.post(`follow/${idUser}`)
         )
     },   
-    getProfile (userId){
+    getProfile (userId:number){
         console.warn('obsolete method. Please profileAPI object')
         return (
             profileAPI.getProfile(userId)
@@ -34,22 +34,22 @@ export const usersAPI = {
     }
 }
 export const profileAPI = {      
-    getProfile (userId){
+    getProfile (userId:number){
         return (
             instance.get(`profile/` + userId)
         )
     },
-    getStatus(userId){
+    getStatus(userId:number){
         return(
             instance.get('profile/status/'+ userId)
         )
     },
-    updateStatus(status){
+    updateStatus(status:string){
         return(            
             instance.put('profile/status', { status: status })
         )
     },
-    savePhoto(photoFile){
+    savePhoto(photoFile: any){
         const formData = new FormData();
         formData.append('image', photoFile);
         return(            
@@ -60,23 +60,49 @@ export const profileAPI = {
             })
         )
     },
-    saveProfile(profile){
+    saveProfile(profile: ProfileType){
         return instance.put(`profile`, profile)
         
     }
 }
 
+export enum ResultCodeEnum {
+    Success = 0,
+    Error = 1
+}
+
+type MeResponseType ={
+    data:{
+        id: number
+        email: string
+        login: string
+    }
+    resultCode: ResultCodeEnum
+    messages: Array<string>
+}
+
+
+type LoginResponseType ={
+    data:{
+        userId: number
+    }
+    resultCode: ResultCodeEnum
+    messages: Array<string>
+}
+
 export const authAPI ={
     me() {
         return(
-            instance.get(`auth/me`)
+            instance.get<MeResponseType>(`auth/me`).then(res => res.data)
         )
     },
-    login(email, password, rememberMe = false){
-        return instance.post('auth/login', {email, password, rememberMe })
+    login(email:string , password:string, rememberMe = false){
+        return instance.post<LoginResponseType>('auth/login', {email, password, rememberMe }).then(res => res.data)
     },
     logout (){
         return instance.delete('auth/login');
     },
 }
+
+
 
